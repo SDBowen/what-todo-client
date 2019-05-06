@@ -1,18 +1,21 @@
 import React from "react";
 
+import { ListGroupItem } from "reactstrap";
+
 const Project = props => {
   const { project, selectProject } = props;
   return (
-    <li>
-      <span>{project.title}</span>
-      <button
-        onClick={event => {
-          event.preventDefault();
+    <ListGroupItem
+      tag="button"
+      action
+      onClick={event => {
+        event.preventDefault();
 
-          selectProject(project.id);
-        }}
-      />
-    </li>
+        selectProject(project.id);
+      }}
+    >
+      <span>{project.title}</span>
+    </ListGroupItem>
   );
 };
 

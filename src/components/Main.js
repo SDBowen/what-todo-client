@@ -4,6 +4,8 @@ import axios from "axios";
 import Project from "./Project";
 import Item from "./Item";
 
+import { ListGroup, Row, Col } from "reactstrap";
+
 class Main extends Component {
   constructor() {
     super();
@@ -65,26 +67,30 @@ class Main extends Component {
     const { projects, items } = this.state;
 
     return (
-      <div>
-        <div>
-          Projects
-          {Object.keys(projects).map(key => {
-            return (
-              <Project
-                key={key}
-                project={projects[key]}
-                selectProject={this.selectProject}
-              />
-            );
-          })}
-        </div>
-        <div>
-          Items
-          {Object.keys(items).map(key => {
-            return <Item key={key} item={items[key]} />;
-          })}
-        </div>
-      </div>
+      <Row className="mt-5">
+        <Col>
+          <h5>Projects</h5>
+          <ListGroup>
+            {Object.keys(projects).map(key => {
+              return (
+                <Project
+                  key={key}
+                  project={projects[key]}
+                  selectProject={this.selectProject}
+                />
+              );
+            })}
+          </ListGroup>
+        </Col>
+        <Col>
+          <h5>Items</h5>
+          <ListGroup>
+            {Object.keys(items).map(key => {
+              return <Item key={key} item={items[key]} />;
+            })}
+          </ListGroup>
+        </Col>
+      </Row>
     );
   }
 }

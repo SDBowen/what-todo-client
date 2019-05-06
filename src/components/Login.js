@@ -3,6 +3,8 @@ import { Redirect } from "react-router-dom";
 import axios from "axios";
 import { isAuthenticated, setAuthHeader } from "./Auth";
 
+import { Row, Button } from "reactstrap";
+
 class Login extends Component {
   constructor() {
     super();
@@ -59,30 +61,36 @@ class Login extends Component {
     } else {
       return (
         <div>
-          <p>Login</p>
-          <form onSubmit={this.onSubmit}>
-            <div>
-              <input
-                type="text"
-                name="email"
-                placeholder="Email"
-                value={email}
-                onChange={this.onChange}
-              />
-            </div>
-            <div>
-              <input
-                type="password"
-                name="password"
-                placeholder="Password"
-                value={password}
-                onChange={this.onChange}
-              />
-            </div>
-            <div>
-              <input type="submit" value="Login" />
-            </div>
-          </form>
+          <Row className="justify-content-center mt-5">
+            <h3>Login</h3>
+          </Row>
+          <Row className="justify-content-center mt-3">
+            <form onSubmit={this.onSubmit}>
+              <div>
+                <input
+                  type="text"
+                  name="email"
+                  placeholder="Email"
+                  value={email}
+                  onChange={this.onChange}
+                />
+              </div>
+              <div>
+                <input
+                  type="password"
+                  name="password"
+                  placeholder="Password"
+                  value={password}
+                  onChange={this.onChange}
+                />
+              </div>
+              <Row className="justify-content-center mt-3">
+                <Button outline color="secondary">
+                  Login
+                </Button>
+              </Row>
+            </form>
+          </Row>
         </div>
       );
     }

@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import axios from "axios";
 
+import { Row, Button } from "reactstrap";
+
 class Register extends Component {
   constructor() {
     super();
@@ -51,39 +53,45 @@ class Register extends Component {
     } else {
       return (
         <div>
-          <p>Register</p>
-          <form onSubmit={this.onSubmit}>
-            <div>
-              <input
-                type="text"
-                name="email"
-                placeholder="Email"
-                value={email}
-                onChange={this.onChange}
-              />
-            </div>
-            <div>
-              <input
-                type="password"
-                name="password"
-                placeholder="Password"
-                value={password}
-                onChange={this.onChange}
-              />
-            </div>
-            <div>
-              <input
-                type="password"
-                name="passwordTwo"
-                placeholder="Confirm password"
-                value={passwordTwo}
-                onChange={this.onChange}
-              />
-            </div>
-            <div>
-              <input type="submit" value="Register" />
-            </div>
-          </form>
+          <Row className="justify-content-center mt-5">
+            <h3>Register</h3>
+          </Row>
+          <Row className="justify-content-center mt-3">
+            <form onSubmit={this.onSubmit}>
+              <div>
+                <input
+                  type="text"
+                  name="email"
+                  placeholder="Email"
+                  value={email}
+                  onChange={this.onChange}
+                />
+              </div>
+              <div>
+                <input
+                  type="password"
+                  name="password"
+                  placeholder="Password"
+                  value={password}
+                  onChange={this.onChange}
+                />
+              </div>
+              <div>
+                <input
+                  type="password"
+                  name="passwordTwo"
+                  placeholder="Confirm password"
+                  value={passwordTwo}
+                  onChange={this.onChange}
+                />
+              </div>
+              <Row className="justify-content-center mt-3">
+                <Button outline color="secondary">
+                  Register
+                </Button>
+              </Row>
+            </form>
+          </Row>
         </div>
       );
     }

@@ -1,11 +1,13 @@
 import React from "react";
 
+import { ListGroupItem } from "reactstrap";
+
 const Item = props => {
   const { item } = props;
   return (
-    <li>
+    <ListGroupItem tag="button" action>
       <span>{item.description}</span>
-    </li>
+    </ListGroupItem>
   );
 };
 
