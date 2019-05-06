@@ -33,7 +33,6 @@ class Login extends Component {
     };
 
     this.login(data);
-    this.setState({ isAuthenticated: isAuthenticated() });
   };
 
   login = user => {
@@ -44,9 +43,11 @@ class Login extends Component {
         localStorage.setItem("whatTodoJwt", token);
 
         setAuthHeader(token);
+
+        this.setState({ isAuthenticated: isAuthenticated() });
       })
       .catch(error => {
-        return error;
+        console.log(error);
       });
   };
 
