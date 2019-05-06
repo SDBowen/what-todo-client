@@ -1,10 +1,11 @@
 import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
 import axios from "axios";
 
 import Project from "./Project";
 import Item from "./Item";
 
-import { ListGroup, Row, Col } from "reactstrap";
+import { ListGroup, Row, Col, Button } from "reactstrap";
 
 class Main extends Component {
   constructor() {
@@ -12,7 +13,12 @@ class Main extends Component {
     this.state = {
       projects: {},
       items: {},
-      activeProject: null
+      activeProject: null,
+      activeItem: null,
+      newProject: false,
+      newItem: false,
+      editProject: false,
+      editItem: false
     };
   }
 
@@ -63,35 +69,131 @@ class Main extends Component {
     this.setState({ activeProject: id });
   };
 
-  render() {
-    const { projects, items } = this.state;
+  selectItem = id => {
+    this.setState({ activeItem: id });
+  };
 
-    return (
-      <Row className="mt-5">
-        <Col>
-          <h5>Projects</h5>
-          <ListGroup>
-            {Object.keys(projects).map(key => {
-              return (
-                <Project
-                  key={key}
-                  project={projects[key]}
-                  selectProject={this.selectProject}
-                />
-              );
-            })}
-          </ListGroup>
-        </Col>
-        <Col>
-          <h5>Items</h5>
-          <ListGroup>
-            {Object.keys(items).map(key => {
-              return <Item key={key} item={items[key]} />;
-            })}
-          </ListGroup>
-        </Col>
-      </Row>
-    );
+  render() {
+    const {
+      projects,
+      items,
+      newProject,
+      newItem,
+      activeProject,
+      activeItem,
+      editProject,
+      editItem
+    } = this.state;
+
+    if (newProject === true) {
+      return <Redirect to="/project" />;
+    }
+    if (editProject === true) {
+      return (
+        <Redirect
+          to={{
+            pathname: "/edit-project",
+            state: { activeProject }
+          }}
+        />
+      );
+    }
+    if (newItem === true) {
+      return (
+        <Redirect
+          to={{
+            pathname: "/item",
+            state: { activeProject }
+          }}
+        />
+      );
+    }
+    if (editItem === true) {
+      return (
+        <Redirect
+          to={{
+            pathname: "/edit-item",
+            state: { activeProject, item: items[activeItem] }
+          }}
+        />
+      );
+    } else {
+      return (
+        <Row className="mt-5">
+          <Col>
+            <Row className="justify-content-center">
+              <h5 className="mr-3">Projects</h5>
+              <Button
+                size="sm"
+                onClick={event => {
+                  event.preventDefault();
+                  this.setState({ newProject: true });
+                }}
+              >
+                new
+              </Button>
+              <Button
+                className="ml-1"
+                size="sm"
+                onClick={event => {
+                  event.preventDefault();
+                  this.setState({ editProject: true });
+                }}
+              >
+                edit
+              </Button>
+            </Row>
+            <ListGroup className="mt-3">
+              {Object.keys(projects).map(key => {
+                return (
+                  <Project
+                    key={key}
+                    project={projects[key]}
+                    selectProject={this.selectProject}
+                  />
+                );
+              })}
+            </ListGroup>
+          </Col>
+
+          <Col>
+            <Row className="justify-content-center">
+              <h5 className="mr-3">Items</h5>
+              <Button
+                size="sm"
+                onClick={event => {
+                  event.preventDefault();
+                  this.setState({ newItem: true });
+                }}
+              >
+                add
+              </Button>
+              <Button
+                className="ml-1"
+                size="sm"
+                onClick={event => {
+                  event.preventDefault();
+                  this.setState({ editItem: true });
+                }}
+              >
+                edit
+              </Button>
+            </Row>
+            <ListGroup className="mt-3">
+              {Object.keys(items).map(key => {
+                return (
+                  <Item
+                    key={key}
+                    item={items[key]}
+                    selectItem={this.selectItem}
+                  />
+                );
+              })}
+            </ListGroup>
+          </Col>
+        </Row>
+      );
+    }
   }
 }
 
