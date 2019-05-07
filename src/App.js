@@ -7,7 +7,7 @@ import Register from "./components/Register";
 import Main from "./components/Main";
 import NewProject from "./components/NewProject";
 import NewItem from "./components/NewItem";
-// import EditProject from "./components/EditProject";
+import EditProject from "./components/EditProject";
 import EditItem from "./components/EditItem";
 
 import {
@@ -51,7 +51,7 @@ class App extends Component {
             <PrivateRoute exact path="/app" component={Main} />
             <PrivateRoute exact path="/project" component={NewProject} />
             <PrivateRoute exact path="/item" component={NewItem} />
-            {/* <PrivateRoute exact path="/edit-project" component={EditProject} /> */}
+            <PrivateRoute exact path="/edit-project" component={EditProject} />
             <PrivateRoute exact path="/edit-item" component={EditItem} />
           </div>
         </Container>

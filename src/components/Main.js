@@ -48,13 +48,14 @@ class Main extends Component {
   };
 
   getItems = () => {
-    const { activeProject } = this.state;
+    const { activeProject, projects } = this.state;
+    const projectId = projects[activeProject].id;
 
     axios
       .get(
         `${
           process.env.REACT_APP_DEV_API_URL
-        }/api/v1/projects/${activeProject}/items`
+        }/api/v1/projects/${projectId}/items`
       )
       .then(res => {
         const items = res.data.data;
@@ -66,7 +67,13 @@ class Main extends Component {
   };
 
   selectProject = id => {
-    this.setState({ activeProject: id });
+    const { projects } = this.state;
+
+    Object.keys(projects).forEach(key => {
+      if (this.state.projects[key].id === id) {
+        this.setState({ activeProject: key });
+      }
+    });
   };
 
   selectItem = id => {
@@ -94,32 +101,32 @@ class Main extends Component {
     if (newProject === true) {
       return <Redirect to="/project" />;
     }
-    if (editProject === true) {
+    if (editProject === true && activeProject) {
       return (
         <Redirect
           to={{
             pathname: "/edit-project",
-            state: { activeProject }
+            state: { project: projects[activeProject] }
           }}
         />
       );
     }
-    if (newItem === true) {
+    if (newItem === true && activeProject) {
       return (
         <Redirect
           to={{
             pathname: "/item",
-            state: { activeProject }
+            state: { projectId: projects[activeProject].id }
           }}
         />
       );
     }
-    if (editItem === true) {
+    if (editItem === true && activeItem) {
       return (
         <Redirect
           to={{
             pathname: "/edit-item",
-            state: { activeProject, item: items[activeItem] }
+            state: { item: items[activeItem] }
           }}
         />
       );

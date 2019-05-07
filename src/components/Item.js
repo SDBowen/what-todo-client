@@ -4,7 +4,6 @@ import { ListGroupItem } from "reactstrap";
 
 const Item = props => {
   const { item, selectItem } = props;
-  console.log(item);
   return (
     <ListGroupItem
       color={item.completed ? "success" : ""}

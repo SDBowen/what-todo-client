@@ -31,13 +31,13 @@ class NewItem extends Component {
   };
 
   createItem = item => {
-    const { activeProject } = this.props.location.state;
+    const { projectId } = this.props.location.state;
 
     axios
       .post(
         `${
           process.env.REACT_APP_DEV_API_URL
-        }/api/v1/projects/${activeProject}/items`,
+        }/api/v1/projects/${projectId}/items`,
         item
       )
       .then(res => {
