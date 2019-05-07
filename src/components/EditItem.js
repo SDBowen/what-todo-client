@@ -66,6 +66,25 @@ class EditItem extends Component {
     });
   };
 
+  handleDelete = e => {
+    e.preventDefault();
+
+    const { item } = this.props.location.state;
+
+    axios
+      .delete(
+        `${process.env.REACT_APP_DEV_API_URL}/api/v1/projects/${
+          item.project_id
+        }/items/${item.id}`
+      )
+      .then(res => {
+        this.setState({ redirect: true });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
+
   render() {
     const { description, completed, redirect } = this.state;
 
@@ -103,6 +122,14 @@ class EditItem extends Component {
               <Row className="justify-content-center mt-3">
                 <Button outline color="secondary">
                   Update
+                </Button>
+                <Button
+                  outline
+                  className="ml-2"
+                  color="danger"
+                  onClick={this.handleDelete}
+                >
+                  Delete
                 </Button>
               </Row>
             </form>
