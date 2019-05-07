@@ -70,7 +70,13 @@ class Main extends Component {
   };
 
   selectItem = id => {
-    this.setState({ activeItem: id });
+    const { items } = this.state;
+
+    Object.keys(items).forEach(key => {
+      if (this.state.items[key].id === id) {
+        this.setState({ activeItem: key });
+      }
+    });
   };
 
   render() {
