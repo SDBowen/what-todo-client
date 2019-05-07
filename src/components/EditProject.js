@@ -16,7 +16,6 @@ class EditProject extends Component {
 
   componentDidMount() {
     this.setProject();
-    console.log(this.props.location.state.project.id);
   }
 
   onChange = event => {
