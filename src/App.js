@@ -22,7 +22,7 @@ class App extends Component {
           <div>
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />
-            <PrivateRoute exact path="/app" component={Main} />
+            <PrivateRoute exact path="/" component={Main} />
             <PrivateRoute exact path="/project" component={NewProject} />
             <PrivateRoute exact path="/item" component={NewItem} />
             <PrivateRoute exact path="/edit-project" component={EditProject} />

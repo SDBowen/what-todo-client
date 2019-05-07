@@ -14,7 +14,7 @@ class Navigation extends Component {
   render() {
     return (
       <Navbar color="light" light expand="md">
-        <NavbarBrand href="/app">What Todo</NavbarBrand>
+        <NavbarBrand href="/">What Todo</NavbarBrand>
         <Nav className="ml-auto" navbar>
           <NavItem>
             <NavLink tag={Link} to="/register">
