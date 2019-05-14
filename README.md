@@ -6,22 +6,18 @@ The API for What Todo is in a [separate repository](https://github.com/SDBowen/w
 
 ## Getting Started
 
+Get Docker CE at https://docs.docker.com/install/
+
 Clone the repo
 
 ```
 git clone https://github.com/SDBowen/what-todo-client.git
 ```
 
-Install dependencies
+Build and start the app
 
 ```
-npm install
-```
-
-Start the app
-
-```
-npm start dev
+docker-compose up -d --build
 ```
 
 ## Built With
